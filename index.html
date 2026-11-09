@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Convite XV Jullia Venas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Você é meu convidado especial! Sábado, 30/01/2027, às 20h, no Reserva Campo Belo.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jullia Venas · XV anos">
+<meta property="og:description" content="Você é meu convidado especial! Sábado, 30/01/2027, às 20h. Toque para abrir o convite.">
+<meta property="og:image" content="https://julia-vennas-xv-anos.vercel.app/previa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://julia-vennas-xv-anos.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fcded9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+<style>
+[hidden]{display:none!important}
+body{margin:0}
+*,*::before,*::after{box-sizing:border-box}
+
+/* Layout: "palco" de celular (máx. 480px) com buquês nos 4 cantos e brasão no topo; abertura em envelope; páginas internas como folhas sobrepostas no mesmo papel. Visual único (papel rosa), sem tema escuro, por escolha. */
+:root{
+  --paper:#fcded9; --paper-hi:#fde8e4; --card:#fff1ee;
+  --rose:#cf2749; --magenta:#dc3173; --rose-deep:#a5173a; --rose-soft:#ef9fb2;
+  --gold:#c69440; --gold-hi:#ecd29b; --gold-lo:#a87a32;
+  --ink:#cf2749;
+  --script:"Great Vibes","Brush Script MT",cursive;
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lock{overflow:hidden}
+button{font:inherit;color:inherit}
+img{max-width:100%}
+
+.stage{position:relative;min-height:100%;overflow:hidden;
+  background:radial-gradient(90% 55% at 50% 38%,var(--paper-hi) 0%,transparent 70%),var(--paper)}
+.fl{position:absolute;pointer-events:none;z-index:0;display:block;max-width:none;height:auto}
+.fl.tl{top:0;left:0}
+.fl.tr{top:0;right:0}
+.fl.bl{bottom:0;left:0}
+.fl.br{bottom:0;right:0}
+.fl.tl,.fl.tr{width:clamp(110px,31.5vw,340px)}
+.fl.bl,.fl.br{width:clamp(104px,29.6vw,320px)}
+
+/* ---------- abertura ---------- */
+#cover{position:fixed;inset:0;z-index:70;overflow:hidden;perspective:1400px}
+.door{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:var(--paper);
+  transition:transform 1.35s cubic-bezier(.7,0,.2,1),opacity 1.35s ease;box-shadow:0 0 34px rgba(150,30,60,.18)}
+.door.left{left:0;transform-origin:left center}
+.door.right{right:0;transform-origin:right center}
+.band{position:absolute;top:0;bottom:0;width:22px;z-index:1;
+  background:linear-gradient(90deg,#a5173a 0%,#d43a68 34%,#f191ab 52%,#d43a68 70%,#a5173a 100%)}
+.door.left .band{right:0}
+.door.right .band{left:0}
+.band::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.06) 0 2px,transparent 2px 6px)}
+#cover.open .door.left{transform:translateX(-104%) rotateY(14deg)}
+#cover.open .door.right{transform:translateX(104%) rotateY(-14deg)}
+.cover-name{position:absolute;left:0;right:0;top:calc(14% + env(safe-area-inset-top,0px));z-index:3;text-align:center;pointer-events:none;transition:opacity .5s ease}
+.cover-name .cn{display:inline-block;background:rgba(252,222,217,.95);padding:8px 24px 12px;border-radius:26px;box-shadow:0 0 0 1.5px var(--gold-hi)}
+.cover-name span{display:block;font-family:var(--script);font-size:clamp(2.6rem,12vw,3.6rem);color:var(--rose);line-height:1}
+.cover-name small{display:block;margin-top:6px;font-family:var(--serif);font-size:1.1rem;letter-spacing:.06em;color:var(--gold-lo)}
+.seal-wrap{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:14px;transition:transform .7s ease,opacity .6s ease}
+#cover.open .seal-wrap,#cover.open .cover-name{opacity:0}
+#cover.open .seal-wrap{transform:translate(-50%,-50%) scale(1.25)}
+#openBtn{width:min(78vw,340px);border:0;padding:0;background:none;cursor:pointer;border-radius:24px;
+  filter:drop-shadow(0 8px 14px rgba(120,10,40,.22));animation:pulse 2.6s ease-in-out infinite}
+#openBtn img{width:100%;height:auto;display:block}
+#openBtn:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+.tap{font-family:var(--serif);font-style:italic;font-size:1.05rem;letter-spacing:.04em;color:var(--rose);background:rgba(252,222,217,.92);padding:5px 16px;border-radius:30px}
+
+/* ---------- tela principal ---------- */
+.card{position:relative;z-index:1;max-width:480px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding-block:calc(14px + env(safe-area-inset-top,0px)) min(46vw,215px);
+  padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.brasao{width:min(51%,245px);height:auto}
+.name{font-family:var(--script);font-weight:400;color:var(--rose);font-size:min(15.5vw,74px);line-height:1;margin:-4px 0 0;white-space:nowrap}
+.xv{font-family:var(--serif);font-size:min(8.6vw,41px);line-height:1;margin:-6px 0 2px;letter-spacing:-.02em;
+  background:linear-gradient(180deg,var(--gold-hi) 0%,var(--gold) 55%,#e3bf78 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.text{font-size:min(4.1vw,19px);line-height:1.5;margin:0;max-width:34em;text-wrap:balance}
+.date{font-family:var(--serif);font-size:min(12.6vw,60px);line-height:1;margin:8px 0;display:flex;align-items:center;gap:.22em;font-variant-numeric:lining-nums;color:var(--rose)}
+.date i{display:block;width:2px;height:.95em;background:var(--rose)}
+.actions{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;width:100%;max-width:400px;margin-top:16px}
+.act{display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;color:var(--rose)}
+.act .ring{width:min(15vw,62px);height:min(15vw,62px);border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--magenta);
+  box-shadow:0 0 0 3px var(--gold),0 5px 12px rgba(160,20,60,.25);transition:transform .25s ease}
+.act .ring svg{width:56%;height:56%}
+.act small{font-family:var(--serif);font-weight:700;font-size:min(2.5vw,11.5px);letter-spacing:.02em;line-height:1.15;text-transform:uppercase}
+.act:hover .ring,.act:focus-visible .ring{transform:translateY(-3px) scale(1.04)}
+.act:focus-visible{outline:none}
+.act:focus-visible .ring{box-shadow:0 0 0 3px var(--gold),0 0 0 6px var(--rose)}
+
+#main.rise .card>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+#main.rise .card>*:nth-child(2){animation-delay:.1s}
+#main.rise .card>*:nth-child(3){animation-delay:.2s}
+#main.rise .card>*:nth-child(4){animation-delay:.3s}
+#main.rise .card>*:nth-child(5){animation-delay:.4s}
+#main.rise .card>*:nth-child(n+6){animation-delay:.5s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* botão de música */
+#musicBtn{position:fixed;z-index:66;top:calc(12px + env(safe-area-inset-top,0px));left:calc(max(12px,env(safe-area-inset-left,0px)));
+  width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);background:rgba(255,241,238,.92);color:var(--rose);cursor:pointer;display:grid;place-items:center}
+#musicBtn svg{width:20px;height:20px}
+#musicBtn.off{opacity:.65}
+
+/* ---------- pétalas ---------- */
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:45}
+body.opening #petals{z-index:75}
+.pf{position:absolute;top:0;left:0;animation:fall var(--d) linear var(--delay) both;will-change:transform}
+.pf i{display:block;border-radius:75% 0 75% 0;animation:flutter var(--sway) ease-in-out infinite alternate;box-shadow:inset -2px -2px 4px rgba(150,20,60,.15)}
+@keyframes fall{from{transform:translate3d(var(--x0),-8vh,0) rotate(0)}to{transform:translate3d(var(--x1),108vh,0) rotate(var(--r))}}
+@keyframes flutter{from{transform:translateX(-12px) rotate(-30deg) rotateX(0)}to{transform:translateX(12px) rotate(30deg) rotateX(65deg)}}
+
+/* ---------- páginas internas ---------- */
+.sheet{position:fixed;inset:0;z-index:60;overflow-y:auto;overscroll-behavior:contain;background:var(--paper);opacity:0;transform:translateY(24px);transition:opacity .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.sheet.on{opacity:1;transform:none}
+.sheet-in{position:relative;z-index:1;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:20px;
+  padding-block:calc(26px + env(safe-area-inset-top,0px)) min(50vw,230px);
+  padding-left:max(26px,env(safe-area-inset-left,0px));padding-right:max(26px,env(safe-area-inset-right,0px))}
+.close{position:fixed;z-index:65;top:calc(12px + env(safe-area-inset-top,0px));right:calc(max(12px,env(safe-area-inset-right,0px)));
+  width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);background:rgba(255,241,238,.94);cursor:pointer;display:grid;place-items:center;color:var(--rose)}
+.close svg{width:18px;height:18px}
+.close:focus-visible,#musicBtn:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.s-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.s-head .brasao{width:min(34%,165px)}
+.s-title{margin:4px 0 0;line-height:.95;text-wrap:balance;font-weight:400}
+.s-title .script{display:block;font-family:var(--script);font-size:min(15vw,70px);color:var(--rose)}
+.s-title .caps{display:block;font-family:var(--serif);font-size:min(9vw,42px);color:var(--rose);letter-spacing:.06em;font-weight:500;text-transform:uppercase;margin-top:2px}
+.s-sub{font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);text-align:center;margin:0;text-wrap:balance;line-height:1.45;font-weight:500}
+.divider{display:flex;align-items:center;gap:10px;width:min(240px,70%);margin:0 auto;color:var(--gold)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
+.divider svg{width:15px;height:15px;flex:none}
+.s-foot{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.s-foot strong{font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;line-height:1.5;text-wrap:balance}
+.s-foot p{margin:0;font-style:italic;text-wrap:balance}
+
+.rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px;counter-reset:r}
+.rules li{counter-increment:r;border-left:2px solid var(--rose-soft);padding-left:14px}
+.rules h3{margin:0 0 3px;font-size:1rem;letter-spacing:.06em;font-weight:700;text-transform:uppercase}
+.rules h3::before{content:counter(r) ". "}
+.rules p{margin:0;color:#8f3446}
+.rules em{color:var(--rose)}
+
+.swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 6px;margin-top:12px;text-align:center}
+.sw{display:flex;flex-direction:column;align-items:center;gap:6px;font-style:italic;font-size:.82rem;line-height:1.15;color:#8f3446}
+.sw span{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 2px var(--card),0 0 0 3.5px var(--gold),0 3px 6px rgba(90,30,30,.15)}
+@media (max-width:420px){.swatches{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.pill{display:inline-block;font-weight:700;letter-spacing:.12em;font-size:.86rem;color:var(--rose);padding:6px 22px;border:1.5px solid var(--gold);border-radius:30px;background:var(--card);text-transform:uppercase}
+.center{text-align:center}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:center}
+.duo>div{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.icon-ring{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:var(--rose);background:var(--card);
+  box-shadow:0 0 0 1.5px var(--gold),0 0 0 5px var(--card),0 0 0 6.5px var(--gold)}
+.icon-ring svg{width:42px;height:42px}
+.sug{margin:0;font-style:italic;line-height:1.3;color:#8f3446}
+.sug b{display:block;color:var(--rose);font-weight:600}
+.avoid{display:flex;align-items:center;gap:18px}
+.avoid p{margin:0;font-style:italic;font-size:1.05rem;min-width:0;color:#8f3446}
+
+.gifts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.gifts li{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+.gifts .icon-ring{width:52px;height:52px;box-shadow:0 0 0 1.5px var(--gold)}
+.gifts .icon-ring svg{width:27px;height:27px}
+.gifts h3{margin:0;font-size:.95rem;letter-spacing:.05em;font-weight:700;text-transform:uppercase}
+.gifts p{margin:0;line-height:1.35;min-width:0;color:#8f3446;font-size:.95rem}
+.pix{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 14px;border:1.5px solid var(--gold);border-radius:18px;background:rgba(255,241,238,.75)}
+.pix .key{font-size:1.35rem;letter-spacing:.05em;user-select:all;font-variant-numeric:lining-nums tabular-nums;color:var(--rose);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;text-decoration:none;
+  font-family:var(--serif);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:#fff;background:var(--magenta);padding:13px 22px;border-radius:40px;box-shadow:0 0 0 2px var(--gold),0 6px 14px rgba(160,20,60,.22)}
+.btn.ghost{background:var(--card);color:var(--rose)}
+.btn:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+.btn svg{width:18px;height:18px}
+.stack{display:flex;flex-direction:column;gap:14px;align-items:stretch;max-width:340px;width:100%;margin:0 auto}
+.note{font-size:1rem;color:#8f3446;text-align:center;margin:0;text-wrap:balance}
+.venue{font-family:var(--script);font-size:min(12vw,52px);text-align:center;margin:0;line-height:1;color:var(--rose)}
+
+form{display:flex;flex-direction:column;gap:16px}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+input[type=text]{font:inherit;font-size:1.1rem;color:var(--rose-deep);background:var(--card);border:1.5px solid var(--gold-hi);border-radius:12px;padding:12px 14px;text-transform:none;letter-spacing:0;font-weight:400}
+input[type=text]::placeholder{color:#d48a99}
+input[type=text]:focus{outline:2px solid var(--rose-soft);outline-offset:1px}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:0;margin:0;padding:0}
+.choice legend{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px;padding:0}
+.choice label{position:relative;cursor:pointer}
+.choice input{position:absolute;opacity:0}
+.choice span{display:block;text-align:center;padding:12px 8px;border-radius:12px;border:1.5px solid var(--gold-hi);background:var(--card);font-size:1rem;line-height:1.2;color:#8f3446}
+.choice input:checked+span{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose);color:var(--rose);font-weight:600}
+.choice input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.err{color:var(--rose-deep);font-style:italic;margin:-6px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;
+  background:var(--rose-deep);color:#fff;font-size:.8rem;letter-spacing:.1em;padding:10px 18px;border-radius:30px;opacity:0;transition:opacity .3s;text-transform:uppercase}
+.toast.on{opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  #openBtn{animation:none}
+  .door{transition:opacity .6s ease}
+  #cover.open .door.left,#cover.open .door.right{transform:none;opacity:0}
+  #main.rise .card>*{animation:none}
+  .sheet{transition:opacity .2s}
+}
+</style>
+</head>
+<body>
+
+
+<!-- ===================== ABERTURA ===================== -->
+<div id="cover" role="dialog" aria-label="Convite fechado">
+  <div class="door left"><img class="fl tl" src="canto-sup-esq.webp" alt=""><img class="fl bl" src="canto-inf-esq.webp" alt=""><div class="band"></div></div>
+  <div class="door right"><div class="band"></div><img class="fl tr" src="canto-sup-dir.webp" alt=""><img class="fl br" src="canto-inf-dir.webp" alt=""></div>
+    <div class="seal-wrap">
+    <button id="openBtn" type="button" aria-label="Abrir o convite">
+      <img src="brasao.webp" alt="" width="556" height="456">
+    </button>
+    <span class="tap">Toque para abrir</span>
+  </div>
+</div>
+
+<!-- ===================== CONVITE ===================== -->
+<main id="main" class="stage">
+  <img class="fl tl" src="canto-sup-esq.webp" alt="" width="340" height="450">
+  <img class="fl tr" src="canto-sup-dir.webp" alt="" width="339" height="450">
+  <img class="fl bl" src="canto-inf-esq.webp" alt="" width="320" height="520">
+  <img class="fl br" src="canto-inf-dir.webp" alt="" width="320" height="520">
+  <div class="card">
+    <img class="brasao" src="brasao.webp" alt="Brasão com o monograma JV" width="556" height="456">
+    <h1 class="name">Jullia Venas</h1>
+    <p class="xv">XV anos</p>
+    <p class="text">Existem sonhos que florescem no tempo certo, e hoje um dos mais lindos da minha vida ganha forma. Entre sonhos, flores e bênçãos de Deus, chegou o momento de celebrar meus 15 anos. Será uma noite de encanto, amor e gratidão, e sua presença tornará essa história ainda mais inesquecível.</p>
+    <p class="date" aria-label="30 de janeiro de 2027"><span>30</span><i></i><span>01</span><i></i><span>2027</span></p>
+    <p class="text">Às 20h, no Reserva Campo Belo, localizado na Estrada do Caetano, próximo à BR-101, km 173 – Humildes, Feira de Santana – BA, 44135-000.</p>
+    <nav class="actions" aria-label="Informações do convite">
+      <button class="act" data-open="local"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-6.5-6.6-6.5-11.6a6.5 6.5 0 0 1 13 0c0 5-6.5 11.6-6.5 11.6z"/><circle cx="12" cy="9.8" r="2.4"/></svg></span><small>Local</small></button>
+      <button class="act" data-open="rsvp"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 12.3l2.8 2.8L16.5 9"/></svg></span><small>Confirmação de presença</small></button>
+      <button class="act" data-open="manual"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c3.2-1.2 6.4-1 9 1 2.6-2 5.8-2.2 9-1v12.5c-3.2-1.2-6.4-1-9 1-2.6-2-5.8-2.2-9-1z"/><path d="M12 7v12.5"/></svg></span><small>Manual</small></button>
+      <button class="act" data-open="dress"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7a2 2 0 1 1 2.6 1.9c-.4.1-.6.5-.6.9v.6"/><path d="M12 10.4L3.3 16.3c-.8.6-.4 1.7.5 1.7h16.4c.9 0 1.3-1.1.5-1.7z"/></svg></span><small>Dress code</small></button>
+      <button class="act" data-open="presentes"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx=".6"/><rect x="3.5" y="7.5" width="17" height="3" rx=".6"/><path d="M10.5 7.5v13M13.5 7.5v13"/><path d="M12 7.5C10.5 4 7 3.5 7 5.6 7 7.3 10 7.5 12 7.5zM12 7.5c1.5-3.5 5-4 5-1.9 0 1.7-3 1.9-5 1.9z"/></svg></span><small>Presentes</small></button>
+    </nav>
+  </div>
+</main>
+
+<button id="musicBtn" type="button" aria-label="Pausar música" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg></button>
+<div id="petals" aria-hidden="true"></div>
+
+<!-- ===================== LOCAL ===================== -->
+<section class="sheet" id="s-local" role="dialog" aria-modal="true" aria-labelledby="t-local" hidden>
+  <button class="close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="stage">
+    <img class="fl tl" src="canto-sup-esq.webp" alt=""><img class="fl tr" src="canto-sup-dir.webp" alt="">
+    <img class="fl bl" src="canto-inf-esq.webp" alt=""><img class="fl br" src="canto-inf-dir.webp" alt="">
+    <div class="sheet-in">
+      <div class="s-head"><img class="brasao" src="brasao.webp" alt="">
+        <h2 class="s-title" id="t-local"><span class="script">Local da</span><span class="caps">Festa</span></h2></div>
+      <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+      <p class="venue">Reserva Campo Belo</p>
+      <p class="note">Estrada do Caetano, próximo à BR-101, km 173<br>Humildes, Feira de Santana – BA, 44135-000</p>
+      <p class="note"><b>Sábado, 30 de janeiro de 2027, às 20h</b></p>
+      <div class="stack">
+        <a class="btn" id="lnk-maps" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6.4-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.6 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>Abrir no Google Maps</a>
+        <a class="btn ghost" id="lnk-waze" target="_blank" rel="noopener">Abrir no Waze</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONFIRMAÇÃO ===================== -->
+<section class="sheet" id="s-rsvp" role="dialog" aria-modal="true" aria-labelledby="t-rsvp" hidden>
+  <button class="close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="stage">
+    <img class="fl tl" src="canto-sup-esq.webp" alt=""><img class="fl tr" src="canto-sup-dir.webp" alt="">
+    <img class="fl bl" src="canto-inf-esq.webp" alt=""><img class="fl br" src="canto-inf-dir.webp" alt="">
+    <div class="sheet-in">
+      <div class="s-head"><img class="brasao" src="brasao.webp" alt="">
+        <h2 class="s-title" id="t-rsvp"><span class="script">Confirmação de</span><span class="caps">Presença</span></h2></div>
+      <p class="note">Sua confirmação ajuda a preparar cada detalhe com carinho. A mensagem será enviada pelo WhatsApp.</p>
+      <form id="rsvpForm" novalidate>
+        <label class="f" for="rsvp-nome">Seu nome completo
+          <input type="text" id="rsvp-nome" name="nome" autocomplete="name" placeholder="Ex.: Ana Souza">
+        </label>
+        <fieldset class="choice">
+          <legend>Você vai?</legend>
+          <label><input type="radio" name="vai" id="rsvp-sim" value="sim" checked><span>Sim, estarei lá</span></label>
+          <label><input type="radio" name="vai" id="rsvp-nao" value="nao"><span>Não poderei ir</span></label>
+        </fieldset>
+        <p class="err" id="rsvpErr" hidden>Escreva seu nome para confirmar.</p>
+        <button class="btn" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1z"/></svg>Enviar pelo WhatsApp</button>
+      </form>
+      <p class="note">Se o WhatsApp não abrir, mande sua confirmação para<br><strong style="user-select:all">(75) 99165-4529</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MANUAL ===================== -->
+<section class="sheet" id="s-manual" role="dialog" aria-modal="true" aria-labelledby="t-manual" hidden>
+  <button class="close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="stage">
+    <img class="fl tl" src="canto-sup-esq.webp" alt=""><img class="fl tr" src="canto-sup-dir.webp" alt="">
+    <img class="fl bl" src="canto-inf-esq.webp" alt=""><img class="fl br" src="canto-inf-dir.webp" alt="">
+    <div class="sheet-in">
+      <div class="s-head"><img class="brasao" src="brasao.webp" alt="">
+        <h2 class="s-title" id="t-manual"><span class="script">Manual do</span><span class="caps">Convidado</span></h2></div>
+      <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+      <ol class="rules">
+        <li><h3>Confirme sua presença</h3><p>Confirmar sua presença é o primeiro passo para tornar esse dia ainda mais especial.</p></li>
+        <li><h3>Celebre conosco</h3><p>Seu papel é desfrutar da festa e <em>celebrar conosco.</em> <em>Evite convidar outras pessoas, pois convidado não convida!</em></p></li>
+        <li><h3>Pontualidade</h3><p>Sua pontualidade é essencial para o bom andamento da festa. A celebração terá início às 20h.</p></li>
+        <li><h3>Paleta de cores</h3><p><em>Prefira usar trajes nos tons da paleta de cores.</em></p><div class="swatches" data-swatches></div></li>
+        <li><h3>Aproveite o momento</h3><p>Dance, brinde, sorria e compartilhe <em>momentos inesquecíveis conosco.</em></p></li>
+      </ol>
+      <div class="s-foot">
+        <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+        <strong>Sua presença faz tudo valer a pena!</strong>
+        <p>Obrigada por fazer parte deste sonho.<br>Que esta noite seja inesquecível!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DRESS CODE ===================== -->
+<section class="sheet" id="s-dress" role="dialog" aria-modal="true" aria-labelledby="t-dress" hidden>
+  <button class="close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="stage">
+    <img class="fl tl" src="canto-sup-esq.webp" alt=""><img class="fl tr" src="canto-sup-dir.webp" alt="">
+    <img class="fl bl" src="canto-inf-esq.webp" alt=""><img class="fl br" src="canto-inf-dir.webp" alt="">
+    <div class="sheet-in">
+      <div class="s-head"><img class="brasao" src="brasao.webp" alt="">
+        <h2 class="s-title" id="t-dress"><span class="script">Dress Code</span></h2></div>
+      <p class="s-sub">Vista-se para celebrar este momento inesquecível!</p>
+      <div class="duo">
+        <div><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3l.6 4.2L5.5 21h13L13.9 7.2 14.5 3"/><path d="M9.6 7.5h4.8"/><path d="M9.5 3h5"/><path d="M8 15c2 .8 6 .8 8 0"/></svg></span>
+          <span class="pill">Para elas</span><p class="sug"><b>Sugestão:</b>Vestidos longos, midi ou elegantes.</p></div>
+        <div><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5L4 6l1.5 15h13L20 6l-4-2.5"/><path d="M8 3.5l4 6 4-6"/><path d="M12 9.5V21"/><path d="M10.6 3.5L12 6l1.4-2.5"/><path d="M15 13h2"/></svg></span>
+          <span class="pill">Para eles</span><p class="sug"><b>Sugestão:</b>Terno ou costume social.</p></div>
+      </div>
+      <div class="center"><span class="pill">Paleta sugerida</span><div class="swatches" data-swatches></div></div>
+      <div class="center"><span class="pill">Evite</span></div>
+      <div class="avoid">
+        <span class="icon-ring" style="flex:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9h7l2 1.6h4.5v2H3.5z"/><path d="M3.5 9c0-2 .7-3 2-3l1.5 1.5L9 7"/><path d="M8 17c0-2 1.6-3.4 3.5-3.4S15 15 15 17z"/><path d="M15 17h3"/><path d="M4 21L20 4"/></svg></span>
+        <p>Roupas esportivas, chinelos, bonés e peças muito casuais.</p>
+      </div>
+      <div class="s-foot">
+        <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+        <strong>Sua presença é o brilho mais especial desta noite.</strong>
+        <p>Vista-se para celebrar este momento inesquecível.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRESENTES ===================== -->
+<section class="sheet" id="s-presentes" role="dialog" aria-modal="true" aria-labelledby="t-presentes" hidden>
+  <button class="close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="stage">
+    <img class="fl tl" src="canto-sup-esq.webp" alt=""><img class="fl tr" src="canto-sup-dir.webp" alt="">
+    <img class="fl bl" src="canto-inf-esq.webp" alt=""><img class="fl br" src="canto-inf-dir.webp" alt="">
+    <div class="sheet-in">
+      <div class="s-head"><img class="brasao" src="brasao.webp" alt="">
+        <h2 class="s-title" id="t-presentes"><span class="script">Sugestões de</span><span class="caps">Presente</span></h2></div>
+      <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+      <ul class="gifts">
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5c1 6 4 10 8 11.5 4-1.5 7-5.5 8-11.5"/><path d="M12 21l-2.3-2.3a1.5 1.5 0 0 1 2.3-1.9 1.5 1.5 0 0 1 2.3 1.9z"/></svg></span>
+          <div><h3>Acessórios</h3><p>Brincos, colares, pulseiras e outros acessórios.<br><em><b>Lojas:</b> Maria Bonita, Santa Peça e Rommanel.</em></p></div></li>
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="11" width="5.5" height="10" rx="1"/><path d="M5.5 11V7.5L9 5v6"/><circle cx="16.5" cy="15.5" r="4"/><circle cx="16.5" cy="15.5" r="1.8"/></svg></span>
+          <div><h3>Maquiagem</h3><p>Marcas que uso: Océane, Vizzela, Franciny Ehlke, Mari Maria, Mary Kay e Eudora.<br><em><b>Loja:</b> I Love Makeup.</em></p></div></li>
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="9" width="13" height="12" rx="3.5"/><rect x="9.5" y="5" width="5" height="4" rx=".8"/><path d="M12 3v2"/><path d="M12 18l-2-2a1.3 1.3 0 0 1 2-1.6 1.3 1.3 0 0 1 2 1.6z"/></svg></span>
+          <div><h3>Perfumes e hidratantes</h3><p>WePink e O Boticário.</p></div></li>
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3l.6 4.2L5.5 21h13L13.9 7.2 14.5 3"/><path d="M9.6 7.5h4.8"/><path d="M9.5 3h5"/></svg></span>
+          <div><h3>Roupas</h3><p>Tamanhos: PP, P ou 34.</p></div></li>
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5c4 0 6.5-2 8.8-5.6l2-3c1-1.4 2.8-1.4 3.8 0 .9 1.3.9 3-.1 4.4L16 15.5V21"/><path d="M3 16.5V19h10.5"/><path d="M17.5 12.4L19 21"/></svg></span>
+          <div><h3>Sapatos</h3><p>Numeração: 35/36.</p></div></li>
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1.2 11.5H6.2z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/><path d="M10 13h4"/></svg></span>
+          <div><h3>Bolsas</h3><p>Bolsas de todos os estilos.</p></div></li>
+        <li><span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="8" width="6" height="13" rx="1.5"/><rect x="6" y="4" width="3" height="4" rx=".6"/><rect x="13" y="12" width="6.5" height="9" rx="1.5"/><rect x="14.2" y="10" width="4.1" height="2" rx=".5"/></svg></span>
+          <div><h3>Produtos de skincare</h3><p>Principia, Garnier, Ruby Rose e Needs.</p></div></li>
+      </ul>
+      <div class="pix">
+        <span class="pill">Pix para presentes</span>
+        <span class="key" id="pixKey">09606614506</span>
+        <button class="btn ghost" type="button" id="copyPix">Copiar chave Pix</button>
+      </div>
+      <div class="s-foot">
+        <p>Sua presença já é um presente especial!<br>Obrigada por fazer parte desse momento tão importante da minha vida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ======================== DADOS DO CONVITE ======================== */
+const CONVITE = {
+  whatsapp: "5575991654529",
+  aniversariante: "Jullia",
+  dataTexto: "30/01/2027, às 20h",
+  endereco: "Reserva Campo Belo, Estrada do Caetano, Humildes, Feira de Santana - BA, 44135-000",
+  musica: "musica.mp3"
+};
+const PALETA = [
+  ["Verde-sálvia","#8d9c6c"],["Azul-marinho","#22305a"],["Marrom-chocolate","#6a3a20"],
+  ["Preto","#2a2422"],["Vinho","#8e1c3a"],["Tons neutros","#d8c3b6"]
+];
+
+document.querySelectorAll("[data-swatches]").forEach(el=>{
+  el.innerHTML = PALETA.map(([n,c])=>`<div class="sw"><span style="background:${c}"></span>${n.replace("-","-<br>")}</div>`).join("");
+});
+const q=encodeURIComponent(CONVITE.endereco);
+document.getElementById("lnk-maps").href="https://www.google.com/maps/search/?api=1&query="+q;
+document.getElementById("lnk-waze").href="https://waze.com/ul?q="+q+"&navigate=yes";
+
+/* borda irregular do selo de cera */
+(function(){
+  let d="",n=28;
+  for(let i=0;i<=n;i++){const a=i/n*Math.PI*2,r=50+Math.sin(i*2.7)*2.2+Math.cos(i*5.3)*1.6;d+=(i?"L":"M")+(Math.cos(a)*r).toFixed(1)+" "+(Math.sin(a)*r).toFixed(1);}
+  const w=document.getElementById("waxEdge"); if(w) w.setAttribute("d",d+"Z");
+})();
+
+/* ======================== PÉTALAS ======================== */
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const layer=document.getElementById("petals");
+const tints=[
+  "radial-gradient(circle at 30% 30%,#fff3f5,#f7b3c3 60%,#e7799a)",
+  "radial-gradient(circle at 30% 30%,#ffe2ea,#ee7fa0 55%,#cf2f62)",
+  "radial-gradient(circle at 30% 30%,#fffaf8,#fbd5dc 60%,#f2a9ba)"
+];
+function petal(burst){
+  if(reduce) return;
+  const el=document.createElement("span"),i=document.createElement("i");
+  el.className="pf";el.appendChild(i);
+  const s=9+Math.random()*13,x0=Math.random()*100,drift=Math.random()*30-15;
+  el.style.setProperty("--x0",x0+"vw");el.style.setProperty("--x1",(x0+drift)+"vw");
+  el.style.setProperty("--r",(Math.random()*720-360)+"deg");
+  el.style.setProperty("--d",(burst?3.2+Math.random()*2.6:8+Math.random()*6)+"s");
+  el.style.setProperty("--delay",(burst?Math.random()*1.3:0)+"s");
+  i.style.width=s+"px";i.style.height=(s*1.25)+"px";
+  i.style.background=tints[Math.floor(Math.random()*tints.length)];
+  i.style.setProperty("--sway",(1.1+Math.random()*1.6)+"s");
+  el.addEventListener("animationend",e=>{if(e.target===el)el.remove();});
+  layer.appendChild(el);
+}
+let ambient=null;
+function startAmbient(){
+  if(reduce||ambient) return;
+  ambient=setInterval(()=>{if(document.visibilityState==="visible"&&layer.childElementCount<9)petal(false);},1600);
+}
+
+/* ======================== MÚSICA ======================== */
+let audio=null;
+const musicBtn=document.getElementById("musicBtn");
+function startMusic(){
+  if(!CONVITE.musica) return;
+  try{audio=new Audio(CONVITE.musica);audio.loop=true;audio.volume=0;audio.play().catch(()=>{});musicBtn.hidden=false;let v=0;const f=setInterval(()=>{v=Math.min(1,v+0.05);audio.volume=v;if(v>=1)clearInterval(f);},120);}catch(e){}
+}
+musicBtn.addEventListener("click",()=>{
+  if(!audio) return;
+  if(audio.paused){audio.play().catch(()=>{});musicBtn.classList.remove("off");musicBtn.setAttribute("aria-label","Pausar música");}
+  else{audio.pause();musicBtn.classList.add("off");musicBtn.setAttribute("aria-label","Tocar música");}
+});
+
+/* ======================== ABERTURA ======================== */
+const cover=document.getElementById("cover"),main=document.getElementById("main");
+let opened=false;
+function openInvite(){
+  if(opened) return; opened=true;
+  document.body.classList.add("opening");
+  cover.classList.add("open");
+  for(let k=0;k<46;k++) petal(true);
+  startMusic();
+  setTimeout(()=>main.classList.add("rise"),350);
+  setTimeout(()=>{cover.hidden=true;document.body.classList.remove("opening");startAmbient();},1500);
+}
+document.getElementById("openBtn").addEventListener("click",openInvite);
+cover.addEventListener("click",e=>{if(e.target.closest(".door"))openInvite();});
+
+/* ======================== PÁGINAS ======================== */
+let current=null,lastBtn=null;
+function openSheet(name,btn){
+  const s=document.getElementById("s-"+name); if(!s) return;
+  lastBtn=btn||null;current=s;s.hidden=false;s.scrollTop=0;
+  document.body.classList.add("lock");
+  requestAnimationFrame(()=>requestAnimationFrame(()=>s.classList.add("on")));
+  s.querySelector(".close").focus({preventScroll:true});
+}
+function closeSheet(){
+  if(!current) return; const s=current; current=null;
+  s.classList.remove("on");
+  setTimeout(()=>{s.hidden=true;},reduce?150:420);
+  document.body.classList.remove("lock");
+  if(lastBtn) lastBtn.focus({preventScroll:true});
+}
+document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>openSheet(b.dataset.open,b)));
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeSheet));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet();});
+
+/* ======================== CONFIRMAÇÃO ======================== */
+document.getElementById("rsvpForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const nomeEl=document.getElementById("rsvp-nome"),nome=nomeEl.value.trim(),err=document.getElementById("rsvpErr");
+  if(!nome){err.hidden=false;nomeEl.focus();return;}
+  err.hidden=true;
+  const vai=document.getElementById("rsvp-sim").checked;
+  const msg=vai
+    ?`Olá! Aqui é ${nome}. Confirmo minha presença no aniversário de 15 anos da ${CONVITE.aniversariante}, no dia ${CONVITE.dataTexto}.`
+    :`Olá! Aqui é ${nome}. Infelizmente não poderei comparecer ao aniversário de 15 anos da ${CONVITE.aniversariante}. Desejo uma noite linda!`;
+  const a=document.createElement("a");
+  a.href="https://wa.me/"+CONVITE.whatsapp+"?text="+encodeURIComponent(msg);
+  a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
+});
+
+/* ======================== PIX ======================== */
+const toast=document.getElementById("toast");
+function showToast(t){toast.textContent=t;toast.classList.add("on");clearTimeout(showToast._t);showToast._t=setTimeout(()=>toast.classList.remove("on"),2200);}
+document.getElementById("copyPix").addEventListener("click",()=>{
+  const el=document.getElementById("pixKey"),key=el.textContent.trim();
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);showToast("Chave selecionada");};
+  try{navigator.clipboard.writeText(key).then(()=>showToast("Chave Pix copiada"),fallback);}catch(e){fallback();}
+});
+</script>
+
+</body>
+</html>
