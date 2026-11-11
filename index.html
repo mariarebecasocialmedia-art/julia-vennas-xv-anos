@@ -126,8 +126,12 @@ body.opening #petals{z-index:75}
   padding-block:calc(26px + env(safe-area-inset-top,0px)) min(50vw,230px);
   padding-left:max(26px,env(safe-area-inset-left,0px));padding-right:max(26px,env(safe-area-inset-right,0px))}
 .close{position:fixed;z-index:65;top:calc(12px + env(safe-area-inset-top,0px));right:calc(max(12px,env(safe-area-inset-right,0px)));
-  width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);background:rgba(255,241,238,.94);cursor:pointer;display:grid;place-items:center;color:var(--rose)}
-.close svg{width:18px;height:18px}
+  width:54px;height:54px;border-radius:50%;border:0;background:var(--magenta);cursor:pointer;display:grid;place-items:center;color:#fff;
+  box-shadow:0 0 0 3px var(--gold),0 6px 16px rgba(160,20,60,.35)}
+.close svg{width:24px;height:24px}
+.close:hover{transform:scale(1.05)}
+.deadline{display:block;text-align:center;font-weight:700;font-size:1.05rem;color:var(--rose);margin:0;padding:12px 16px;border:1.5px solid var(--gold);border-radius:14px;background:var(--card)}
+.hint-name{margin:-4px 0 0;font-size:.92rem;font-style:italic;color:#8f3446;text-transform:none;letter-spacing:0;font-weight:400}
 .close:focus-visible,#musicBtn:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
 .s-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
 .s-head .brasao{width:min(34%,165px)}
@@ -281,10 +285,12 @@ input[type=text]:focus{outline:2px solid var(--rose-soft);outline-offset:1px}
     <div class="sheet-in">
       <div class="s-head"><img class="brasao" src="brasao.webp" alt="">
         <h2 class="s-title" id="t-rsvp"><span class="script">Confirmação de</span><span class="caps">Presença</span></h2></div>
+      <p class="deadline">Confirme sua presença até 20 de dezembro</p>
       <p class="note">Sua confirmação ajuda a preparar cada detalhe com carinho. A mensagem será enviada pelo WhatsApp.</p>
       <form id="rsvpForm" novalidate>
         <label class="f" for="rsvp-nome">Seu nome completo
           <input type="text" id="rsvp-nome" name="nome" autocomplete="name" placeholder="Ex.: Ana Souza">
+          <span class="hint-name">A entrada na festa será somente com o nome na lista. Confira se seu nome está completo e correto.</span>
         </label>
         <fieldset class="choice">
           <legend>Você vai?</legend>
@@ -310,7 +316,7 @@ input[type=text]:focus{outline:2px solid var(--rose-soft);outline-offset:1px}
         <h2 class="s-title" id="t-manual"><span class="script">Manual do</span><span class="caps">Convidado</span></h2></div>
       <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
       <ol class="rules">
-        <li><h3>Confirme sua presença</h3><p>Confirmar sua presença é o primeiro passo para tornar esse dia ainda mais especial.</p></li>
+        <li><h3>Confirme sua presença</h3><p>Confirme sua presença até <em>20 de dezembro</em>. A entrada será somente com o nome na lista.</p></li>
         <li><h3>Celebre conosco</h3><p>Seu papel é desfrutar da festa e <em>celebrar conosco.</em> <em>Evite convidar outras pessoas, pois convidado não convida!</em></p></li>
         <li><h3>Pontualidade</h3><p>Sua pontualidade é essencial para o bom andamento da festa. A celebração terá início às 20h.</p></li>
         <li><h3>Paleta de cores</h3><p><em>Prefira usar trajes nos tons da paleta de cores.</em></p><div class="swatches" data-swatches></div></li>
